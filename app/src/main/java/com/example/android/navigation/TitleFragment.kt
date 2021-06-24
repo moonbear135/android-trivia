@@ -25,10 +25,10 @@ class TitleFragment : Fragment() {
     ): View? {
        val binding: FragmentTitleBinding = DataBindingUtil.inflate(
            inflater, R.layout.fragment_title,container,false)
-        binding.playButton.setOnClickListener { view: View->
-            //Navigation.findNavController(view).navigate(R.id.action_titleFragment_to_gameFragment)
-            //2-3장 9절 kotlin용으로 코드를 바꾸는 방법 KTX를 이용 안드로이드 뷰 클래스 확장 기능
-            view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
+        //2-3,9절 4분 54초 부분
+        //메인페이지에서 버튼을 눌러서 게임페이지로 작동하게 버튼 활성화시키기
+        binding.playButton.setOnClickListener { view: View ->
+            Navigation.findNavController(view).navigate(R.id.action_titleFragment_to_gameFragment)
         }
         return binding.root
     }
