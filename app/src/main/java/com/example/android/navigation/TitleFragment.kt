@@ -1,13 +1,13 @@
 package com.example.android.navigation
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.databinding.FragmentTitleBinding
 
 
@@ -40,7 +40,30 @@ class TitleFragment : Fragment() {
 
        // view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
 
+       //2-3,17절 menu overflow_ment.xml에서 만든 것을 연결해 줄것입니다.
+        setHasOptionsMenu(true)
+
         return binding.root
     }
+    //2-3,17절 onCreateOptionMenu를 추가한 것입니다.
+    //동영상 강의 2분 22초 쯤에 해당합니다.
+    //inflater?.inflate(R.menu.overflow_menu, menu) 부분에서
+    // overflow_menu 뒤에 ' , ' / ' . ' 두가지를 잘 구분해야합니다.
+    // ' . '을 사용 했을 때 에러가 발생합니다.
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.overflow_menu, menu)
+
+    }
+    //동영상 강의 2분 53초 부분입니다.
+    //NavigationUI을 쓰기 위해서 설정을 해줍니다.
+    //동영상 강의 맨마지막 부분에서 menuFargment의 경우는
+    //별도의 연결이 없어도 기능을 이용하여 바로 보여주는 것을 하기 때문에
+    //연결을 할 필요가 없다고 합니다.
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item!!,
+            view!!.findNavController())
+        super.onOptionsItemSelected(item)
+    }
 }
