@@ -34,9 +34,14 @@ class TitleFragment : Fragment() {
         //2-3,9절 5분 03초부분
         //앞에 작성했던 코드를 Kotlin전용으로 변경 -> 좀더 관용적인 표현
         //android KTX라고 알려져 있는 '제트 팩 프로젝트'의 일부 확장기능
-        binding.playButton.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_titleFragment_to_gameFragment)
-        )
+      //  binding.playButton.setOnClickListener(
+      //      Navigation.createNavigateOnClickListener(R.id.action_titleFragment_to_gameFragment)
+        //)
+
+        binding.playButton.setOnClickListener { v : View ->
+            v.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment())
+        }
+
 
        // view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
 
